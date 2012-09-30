@@ -14,6 +14,7 @@ public class SiteEntity {
     @Id
     private Integer id;
     private String name;
+    private String domain;
 
     @ManyToOne
     private LayoutEntity defaultLayout;
@@ -38,6 +39,14 @@ public class SiteEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 
     public LayoutEntity getDefaultLayout() {
