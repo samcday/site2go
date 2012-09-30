@@ -27,6 +27,7 @@ public class Site2goService extends SpringService<Site2goConfiguration> {
     @Override
     protected ConfigurableApplicationContext initializeApplicationContext(Site2goConfiguration config, Environment environment) throws BeansException {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+        ctx.getEnvironment().setActiveProfiles("dev");
         ctx.scan("com.site2go");
 
         ConfigurableListableBeanFactory beanFactory = ctx.getBeanFactory();

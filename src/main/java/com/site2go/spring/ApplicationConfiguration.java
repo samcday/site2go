@@ -9,4 +9,6 @@ public class ApplicationConfiguration {
     public StringBuilder test() {
         return new StringBuilder();
     }
+
+
 }
