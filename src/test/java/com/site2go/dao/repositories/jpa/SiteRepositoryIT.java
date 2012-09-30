@@ -28,7 +28,6 @@ public class SiteRepositoryIT {
         SiteEntity siteEntity = this.siteRepository.getById(1);
 
         assertNotNull(siteEntity);
-
-        System.out.println("It works!" + this.siteRepository);
+        assertEquals(siteEntity.getName(), "Test Site");
     }
 }
