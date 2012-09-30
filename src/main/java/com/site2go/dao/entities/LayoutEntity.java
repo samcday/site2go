@@ -6,8 +6,10 @@ import org.joda.time.DateTime;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "layout")
 public class LayoutEntity {
     @Id
     private Integer id;

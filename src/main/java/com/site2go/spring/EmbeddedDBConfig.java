@@ -1,5 +1,6 @@
 package com.site2go.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -10,12 +11,13 @@ import javax.sql.DataSource;
 
 @Configuration
 @Profile("dev")
-public class EmbeddedDBConfiguration {
+public class EmbeddedDBConfig {
     @Bean
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
             .setType(EmbeddedDatabaseType.H2)
             .addScript("classpath:com/site2go/sql/tables.sql")
+            .addScript("classpath:com/site2go/sql/data.sql")
             .build();
     }
 }
