@@ -6,16 +6,20 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
 
 @Configuration
 @ComponentScan("com.site2go.dao")
+@EnableTransactionManagement
 public class PersistenceConfig {
     @Autowired private DataSource dataSource;
 
@@ -35,6 +39,11 @@ public class PersistenceConfig {
             put("hibernate.ejb.naming_strategy", "com.site2go.dao.util.hibernate.Site2goNamingStrategy");
         }});
         return factoryBean;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new DataSourceTransactionManager(this.dataSource);
     }
 
     @Bean

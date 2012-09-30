@@ -11,6 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.*;
 
@@ -20,6 +21,7 @@ import static org.junit.Assert.*;
     EmbeddedDBConfig.class,
     PersistenceConfig.class
 })
+@Transactional
 public class SiteRepositoryIT {
     @Autowired private SiteRepository siteRepository;
 
@@ -29,5 +31,13 @@ public class SiteRepositoryIT {
 
         assertNotNull(siteEntity);
         assertEquals(siteEntity.getName(), "Test Site");
+    }
+
+    @Test
+    public void testDelete() {
+        SiteEntity siteEntity = this.siteRepository.getById(1);
+        this.siteRepository.delete(siteEntity);
+
+        assertNull(this.siteRepository.getById(1));
     }
 }

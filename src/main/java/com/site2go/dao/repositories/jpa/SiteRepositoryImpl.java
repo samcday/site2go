@@ -8,12 +8,5 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-public class SiteRepositoryJPAImpl implements SiteRepository {
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    @Override
-    public SiteEntity getById(Integer id) {
-        return this.entityManager.find(SiteEntity.class, id);
-    }
+public class SiteRepositoryImpl extends GenericRepositoryImpl<SiteEntity> implements SiteRepository {
 }
