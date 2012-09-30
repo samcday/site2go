@@ -158,13 +158,14 @@
     </dependencies>
 
     <build>
+        <!-- Shade plugin handles creating us a big fat-ass JAR for deployment. -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.0</version>
                 <configuration>
-                    <createDependencyReducedPom>true</createDependencyReducedPom>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
                     <filters>
                         <filter>
                             <artifact>*:*</artifact>
@@ -194,16 +195,18 @@
                 </executions>
             </plugin>
 
+            <!-- Gogo JDK7 support! -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.5.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
 
+            <!-- This gives us a sane integration test phase that plays nicely with test phase for Surefire unit tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -216,6 +219,17 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- This configuration is needed to make sure successive runs of package don't cause Shade plugin to freak
+            the fuck out -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <forceCreation>true</forceCreation>
+                </configuration>
             </plugin>
         </plugins>
     </build>

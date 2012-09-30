@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
     EmbeddedDBConfig.class,
     PersistenceConfig.class
 })
-public class SiteRepositoryTest {
+public class SiteRepositoryIT {
     @Autowired private SiteRepository siteRepository;
 
     @Test
