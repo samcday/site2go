@@ -1,4 +1,4 @@
-package com.site2go.spring.configuration;
+package com.site2go.spring;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
