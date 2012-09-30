@@ -40,4 +40,11 @@ public class SiteRepositoryIT {
 
         assertNull(this.siteRepository.getById(1));
     }
+
+    @Test
+    public void testFindByDomain() {
+        SiteEntity siteEntity = this.siteRepository.findByDomain("test.com");
+        assertNotNull(siteEntity);
+        assertEquals(siteEntity.getName(), "Test Site");
+    }
 }

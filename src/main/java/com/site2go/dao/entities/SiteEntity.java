@@ -3,13 +3,16 @@ package com.site2go.dao.entities;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "site")
+@NamedQueries({
+    @NamedQuery(
+        name = "findSiteByDomain",
+        query = "select s from SiteEntity s where s.domain = :domain"
+    )
+})
 public class SiteEntity {
     @Id
     private Integer id;

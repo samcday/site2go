@@ -1,6 +1,7 @@
 create table site (
   id int not null auto_increment primary key,
   name varchar(255),
+  domain varchar(255),
   default_layout_id int,
   modified_date timestamp not null,
   created_date timestamp not null

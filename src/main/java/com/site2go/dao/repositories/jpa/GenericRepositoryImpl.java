@@ -8,7 +8,7 @@ import java.lang.reflect.ParameterizedType;
 
 public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     Class<T> clazz;
 
