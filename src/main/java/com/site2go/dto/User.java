@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 
 public class User {
     private String email;
+    private Boolean superAdmin;
     private DateTime modifiedDate;
     private DateTime createdDate;
 
@@ -13,6 +14,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Boolean getSuperAdmin() {
+        return superAdmin;
+    }
+
+    public void setSuperAdmin(Boolean superAdmin) {
+        this.superAdmin = superAdmin;
     }
 
     public DateTime getModifiedDate() {

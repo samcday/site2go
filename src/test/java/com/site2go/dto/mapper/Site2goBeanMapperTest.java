@@ -106,9 +106,22 @@ public class Site2goBeanMapperTest {
     public void testStandardUserEntityMapping() {
         UserEntity src = new UserEntity();
         src.setEmail("test@test.com");
+        src.setSuperAdmin(true);
 
         User dest = this.beanMapper.map(src, User.class);
         assertEquals("test@test.com", dest.getEmail());
+        assertTrue(dest.getSuperAdmin());
+    }
+
+    @Test
+    public void testEmptyUserEntityMapping() {
+        UserEntity src = new UserEntity();
+        User dest = this.beanMapper.map(src, User.class);
+
+        assertNull(dest.getEmail());
+        assertNull(dest.getSuperAdmin());
+        assertNull(dest.getCreatedDate());
+        assertNull(dest.getModifiedDate());
     }
 
     @Test

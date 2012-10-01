@@ -16,6 +16,8 @@ public class UserEntity {
     private String email;
     private String password;
 
+    private Boolean superAdmin;
+
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime modifiedDate;
 
@@ -44,6 +46,14 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getSuperAdmin() {
+        return superAdmin;
+    }
+
+    public void setSuperAdmin(Boolean superAdmin) {
+        this.superAdmin = superAdmin;
     }
 
     public DateTime getModifiedDate() {
