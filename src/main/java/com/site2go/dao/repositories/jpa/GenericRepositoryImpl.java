@@ -29,4 +29,9 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     public void delete(T entity) {
         this.entityManager.remove(entity);
     }
+
+    @Override
+    public void save(T entity) {
+        this.entityManager.persist(entity);
+    }
 }
