@@ -1,8 +1,10 @@
 package com.site2go.dto.mapper;
 
 import com.site2go.dao.entities.LayoutEntity;
+import com.site2go.dao.entities.PageEntity;
 import com.site2go.dao.entities.SiteEntity;
 import com.site2go.dto.Layout;
+import com.site2go.dto.Page;
 import com.site2go.dto.Site;
 import org.dozer.DozerBeanMapper;
 import org.dozer.loader.api.BeanMappingBuilder;
@@ -22,6 +24,11 @@ public class Site2goBeanMapper extends DozerBeanMapper {
 
                 mapping(LayoutEntity.class, Layout.class)
                     .fields("site.domain", "site")
+                    .fields("modifiedDate", "modifiedDate", copyByReference())
+                    .fields("createdDate", "createdDate", copyByReference());
+
+                mapping(PageEntity.class, Page.class)
+                    .fields("layout.name", "layout")
                     .fields("modifiedDate", "modifiedDate", copyByReference())
                     .fields("createdDate", "createdDate", copyByReference());
             }
