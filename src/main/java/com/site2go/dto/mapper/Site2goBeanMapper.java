@@ -5,6 +5,8 @@ import com.site2go.dto.Site;
 import org.dozer.DozerBeanMapper;
 import org.dozer.loader.api.BeanMappingBuilder;
 
+import static org.dozer.loader.api.FieldsMappingOptions.copyByReference;
+
 public class Site2goBeanMapper extends DozerBeanMapper {
     public Site2goBeanMapper() {
         super();
@@ -12,7 +14,9 @@ public class Site2goBeanMapper extends DozerBeanMapper {
             @Override
             protected void configure() {
                 mapping(SiteEntity.class, Site.class)
-                    .fields("defaultLayout.id", "defaultLayout");
+                    .fields("defaultLayout.id", "defaultLayout")
+                    .fields("modifiedDate", "modifiedDate", copyByReference())
+                    .fields("createdDate", "createdDate", copyByReference());
             }
         });
     }

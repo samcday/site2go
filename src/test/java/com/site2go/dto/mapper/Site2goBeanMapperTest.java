@@ -44,4 +44,14 @@ public class Site2goBeanMapperTest {
         assertNull(dest.getDomain());
         assertNull(dest.getName());
     }
+
+    @Test
+    public void testDatesCopyByRef() {
+        SiteEntity src = new SiteEntity();
+        src.setModifiedDate(new DateTime("2012-02-01"));
+        src.setCreatedDate(new DateTime("2012-01-01"));
+        Site dest = this.beanMapper.map(src, Site.class);
+        assertSame(src.getModifiedDate(), dest.getModifiedDate());
+        assertSame(src.getCreatedDate(), dest.getCreatedDate());
+    }
 }
