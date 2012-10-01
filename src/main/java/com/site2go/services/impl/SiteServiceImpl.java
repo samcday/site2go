@@ -16,6 +16,9 @@ public class SiteServiceImpl implements SiteService {
     @Override
     public Site getSiteByDomain(String domain) {
         SiteEntity siteEntity = this.siteRepository.findByDomain(domain);
+        if(siteEntity == null) {
+            return null;
+        }
         return this.mapper.map(siteEntity, Site.class);
     }
 

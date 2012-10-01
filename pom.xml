@@ -19,6 +19,7 @@
         <jodatime.version>2.1</jodatime.version>
         <junit.version>4.10</junit.version>
         <spring.version>3.1.2.RELEASE</spring.version>
+        <mockito.version>1.9.5-rc1</mockito.version>
     </properties>
 
     <dependencyManagement>
@@ -100,6 +101,12 @@
                 <artifactId>dozer</artifactId>
                 <version>5.3.2</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -168,6 +175,12 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
