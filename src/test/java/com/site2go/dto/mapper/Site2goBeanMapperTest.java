@@ -25,13 +25,13 @@ public class Site2goBeanMapperTest {
         src.setCreatedDate(new DateTime("2012-01-01"));
         src.setDomain("test.com");
         src.setDefaultLayout(new LayoutEntity() {{
-            setId(123);
+            setName("testlayout");
         }});
 
         Site dest = this.beanMapper.map(src, Site.class);
         assertEquals(dest.getName(), "Test Site");
         assertEquals(dest.getDomain(), "test.com");
-        assertEquals(dest.getDefaultLayout(), new Integer(123));
+        assertEquals(dest.getDefaultLayout(), "testlayout");
     }
     
     @Test

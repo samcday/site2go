@@ -14,7 +14,7 @@ public class Site2goBeanMapper extends DozerBeanMapper {
             @Override
             protected void configure() {
                 mapping(SiteEntity.class, Site.class)
-                    .fields("defaultLayout.id", "defaultLayout")
+                    .fields("defaultLayout.name", "defaultLayout")
                     .fields("modifiedDate", "modifiedDate", copyByReference())
                     .fields("createdDate", "createdDate", copyByReference());
             }

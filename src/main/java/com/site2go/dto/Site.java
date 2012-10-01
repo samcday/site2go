@@ -7,7 +7,7 @@ public class Site {
     private String domain;
     private DateTime modifiedDate;
     private DateTime createdDate;
-    private Integer defaultLayout;
+    private String defaultLayout;
 
     public String getName() {
         return name;
@@ -41,11 +41,11 @@ public class Site {
         this.createdDate = createdDate;
     }
 
-    public Integer getDefaultLayout() {
+    public String getDefaultLayout() {
         return defaultLayout;
     }
 
-    public void setDefaultLayout(Integer defaultLayout) {
+    public void setDefaultLayout(String defaultLayout) {
         this.defaultLayout = defaultLayout;
     }
 }
