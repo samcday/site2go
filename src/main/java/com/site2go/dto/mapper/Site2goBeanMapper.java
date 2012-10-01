@@ -8,6 +8,7 @@ import com.site2go.dto.Page;
 import com.site2go.dto.Site;
 import org.dozer.DozerBeanMapper;
 import org.dozer.loader.api.BeanMappingBuilder;
+import org.dozer.loader.api.FieldDefinition;
 
 import static org.dozer.loader.api.FieldsMappingOptions.copyByReference;
 
@@ -29,6 +30,9 @@ public class Site2goBeanMapper extends DozerBeanMapper {
 
                 mapping(PageEntity.class, Page.class)
                     .fields("layout.name", "layout")
+                    .fields("metaTitle", new FieldDefinition("meta").mapKey("title"))
+                    .fields("metaDescription", new FieldDefinition("meta").mapKey("description"))
+                    .fields("metaKeywords", new FieldDefinition("meta").mapKey("keywords"))
                     .fields("modifiedDate", "modifiedDate", copyByReference())
                     .fields("createdDate", "createdDate", copyByReference());
             }
