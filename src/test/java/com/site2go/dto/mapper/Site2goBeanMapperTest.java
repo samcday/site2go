@@ -32,14 +32,14 @@ public class Site2goBeanMapperTest {
         }});
 
         Site dest = this.beanMapper.map(src, Site.class);
-        assertEquals(dest.getName(), "Test Site");
-        assertEquals(dest.getDomain(), "test.com");
-        assertEquals(dest.getDefaultLayout(), "testlayout");
+        assertEquals("Test Site", dest.getName());
+        assertEquals("test.com", dest.getDomain());
+        assertEquals("testlayout", dest.getDefaultLayout());
     }
-    
+
     @Test
     public void testEmptySiteEntityMapping() {
-    	SiteEntity src = new SiteEntity();
+        SiteEntity src = new SiteEntity();
         Site dest = this.beanMapper.map(src, Site.class);
         assertNull(dest.getDefaultLayout());
         assertNull(dest.getCreatedDate());
@@ -57,8 +57,8 @@ public class Site2goBeanMapperTest {
         }});
 
         Layout dest = this.beanMapper.map(src, Layout.class);
-        assertEquals(dest.getName(), "testlayout");
-        assertEquals(dest.getSite(), "test.com");
+        assertEquals("testlayout", dest.getName());
+        assertEquals("test.com", dest.getSite());
     }
 
     @Test
@@ -83,11 +83,11 @@ public class Site2goBeanMapperTest {
         src.setMetaKeywords("Test Keywords");
 
         Page dest = this.beanMapper.map(src, Page.class);
-        assertEquals(dest.getName(), "testpage");
-        assertEquals(dest.getLayout(), "testlayout");
-        assertEquals(dest.getMeta().get("title"), "Test Title");
-        assertEquals(dest.getMeta().get("description"), "Test Description");
-        assertEquals(dest.getMeta().get("keywords"), "Test Keywords");
+        assertEquals("testpage", dest.getName());
+        assertEquals("testlayout", dest.getLayout());
+        assertEquals("Test Title", dest.getMeta().get("title"));
+        assertEquals("Test Description", dest.getMeta().get("description"));
+        assertEquals("Test Keywords", dest.getMeta().get("keywords"));
     }
 
     @Test
