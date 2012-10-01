@@ -3,6 +3,8 @@ package com.site2go.deployment;
 import com.github.nhuray.dropwizard.spring.SpringService;
 import com.github.nhuray.dropwizard.spring.config.ConfigurationPlaceholderConfigurer;
 import com.yammer.dropwizard.config.Environment;
+import com.yammer.dropwizard.json.Json;
+import org.codehaus.jackson.map.SerializationConfig;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -18,6 +20,14 @@ public class Site2goService extends SpringService<Site2goConfiguration> {
 
     private Site2goService() {
         super("site2go");
+    }
+
+    // This is where we customize the Jackson ObjectMapper instance DW creates and registers as a JerseyProvider.
+    @Override
+    public Json getJson() {
+        Json json = super.getJson();
+        json.disable(SerializationConfig.Feature.WRITE_DATES_AS_TIMESTAMPS);
+        return json;
     }
 
     @Override
