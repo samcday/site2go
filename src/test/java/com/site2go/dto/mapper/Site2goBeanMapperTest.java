@@ -3,9 +3,11 @@ package com.site2go.dto.mapper;
 import com.site2go.dao.entities.LayoutEntity;
 import com.site2go.dao.entities.PageEntity;
 import com.site2go.dao.entities.SiteEntity;
+import com.site2go.dao.entities.UserEntity;
 import com.site2go.dto.Layout;
 import com.site2go.dto.Page;
 import com.site2go.dto.Site;
+import com.site2go.dto.User;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -91,6 +93,25 @@ public class Site2goBeanMapperTest {
     }
 
     @Test
+    public void testEmptyPageEntityMapping() {
+        PageEntity src = new PageEntity();
+        Page dest = this.beanMapper.map(src, Page.class);
+        assertNull(dest.getLayout());
+        assertTrue(dest.getMeta().isEmpty());
+        assertNull(dest.getCreatedDate());
+        assertNull(dest.getModifiedDate());
+    }
+
+    @Test
+    public void testStandardUserEntityMapping() {
+        UserEntity src = new UserEntity();
+        src.setEmail("test@test.com");
+
+        User dest = this.beanMapper.map(src, User.class);
+        assertEquals("test@test.com", dest.getEmail());
+    }
+
+    @Test
     public void testDatesCopyByRef() {
         SiteEntity srcSite = new SiteEntity();
         srcSite.setModifiedDate(new DateTime("2012-02-01"));
@@ -112,5 +133,12 @@ public class Site2goBeanMapperTest {
         Page destPage = this.beanMapper.map(srcPage, Page.class);
         assertSame(srcPage.getModifiedDate(), destPage.getModifiedDate());
         assertSame(srcPage.getCreatedDate(), destPage.getCreatedDate());
+
+        UserEntity srcUser = new UserEntity();
+        srcUser.setModifiedDate(new DateTime("2012-02-01"));
+        srcUser.setCreatedDate(new DateTime("2012-01-01"));
+        User destUser = this.beanMapper.map(srcUser, User.class);
+        assertSame(srcUser.getModifiedDate(), destUser.getModifiedDate());
+        assertSame(srcUser.getCreatedDate(), destUser.getCreatedDate());
     }
 }
