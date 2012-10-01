@@ -8,11 +8,13 @@ create table site (
 );
 
 create table page (
-  id int not null primary key,
-  name varchar(255),
+  id int not null auto_increment primary key,
+  slug varchar(255),
+  title varchar(255),
   meta_title varchar(255),
   meta_description varchar(255),
   meta_keywords varchar(255),
+  site_id int,
   layout_id int,
   modified_date timestamp not null,
   created_date timestamp not null

@@ -7,15 +7,24 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "page")
+@NamedQueries({
+    @NamedQuery(
+        name = "findBySiteAndSlug",
+        query = "select p from PageEntity p where p.site.id = :siteId and p.slug = :slug"
+    )
+})
 public class PageEntity {
     @Id
     private Integer id;
 
-    private String name;
-
+    private String slug;
+    private String title;
     private String metaTitle;
     private String metaDescription;
     private String metaKeywords;
+
+    @ManyToOne
+    private SiteEntity site;
 
     @ManyToOne
     private LayoutEntity layout;
@@ -34,12 +43,20 @@ public class PageEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getSlug() {
+        return slug;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getMetaTitle() {
@@ -64,6 +81,14 @@ public class PageEntity {
 
     public void setMetaKeywords(String metaKeywords) {
         this.metaKeywords = metaKeywords;
+    }
+
+    public SiteEntity getSite() {
+        return site;
+    }
+
+    public void setSite(SiteEntity site) {
+        this.site = site;
     }
 
     public LayoutEntity getLayout() {

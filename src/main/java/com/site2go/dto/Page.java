@@ -6,18 +6,27 @@ import org.joda.time.DateTime;
 import java.util.Map;
 
 public class Page {
-    private String name;
+    private String slug;
+    private String title;
     private Map<String, String> meta = Maps.newHashMap();
     private String layout;
     private DateTime modifiedDate;
     private DateTime createdDate;
 
-    public String getName() {
-        return name;
+    public String getSlug() {
+        return slug;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Map<String, String> getMeta() {

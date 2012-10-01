@@ -76,7 +76,8 @@ public class Site2goBeanMapperTest {
     @Test
     public void testStandardPageEntityMapping() {
         PageEntity src = new PageEntity();
-        src.setName("testpage");
+        src.setSlug("testpage");
+        src.setTitle("Test Page");
         src.setLayout(new LayoutEntity() {{
             this.setName("testlayout");
         }});
@@ -85,7 +86,8 @@ public class Site2goBeanMapperTest {
         src.setMetaKeywords("Test Keywords");
 
         Page dest = this.beanMapper.map(src, Page.class);
-        assertEquals("testpage", dest.getName());
+        assertEquals("testpage", dest.getSlug());
+        assertEquals("Test Page", dest.getTitle());
         assertEquals("testlayout", dest.getLayout());
         assertEquals("Test Title", dest.getMeta().get("title"));
         assertEquals("Test Description", dest.getMeta().get("description"));
@@ -97,6 +99,8 @@ public class Site2goBeanMapperTest {
         PageEntity src = new PageEntity();
         Page dest = this.beanMapper.map(src, Page.class);
         assertNull(dest.getLayout());
+        assertNull(dest.getSlug());
+        assertNull(dest.getTitle());
         assertTrue(dest.getMeta().isEmpty());
         assertNull(dest.getCreatedDate());
         assertNull(dest.getModifiedDate());
