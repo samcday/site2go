@@ -7,6 +7,7 @@ import com.site2go.spring.PersistenceConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -46,5 +47,10 @@ public class SiteRepositoryIT {
         SiteEntity siteEntity = this.siteRepository.findByDomain("test.com");
         assertNotNull(siteEntity);
         assertEquals(siteEntity.getName(), "Test Site");
+    }
+
+    @Test(expected = EmptyResultDataAccessException.class)
+    public void findByNonexistentDomain() {
+        this.siteRepository.findByDomain("test.comzzzzz");
     }
 }
