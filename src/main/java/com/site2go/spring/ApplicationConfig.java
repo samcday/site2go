@@ -9,9 +9,4 @@ import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class ApplicationConfig {
-    @Bean
-    @Scope("prototype")
-    public PageResource pageResource() {
-        return new PageResource();
-    }
 }

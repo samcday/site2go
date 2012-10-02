@@ -21,9 +21,8 @@ import javax.ws.rs.core.Response;
 @Path("/site/{domain}")
 @Produces(MediaType.APPLICATION_JSON)
 @Component
-public class SiteResource implements BeanFactoryAware {
-    private SiteService siteService;
-    private BeanFactory beanFactory;
+public class SiteResource {
+    private PageResource pageResource;
 
     @GET
     @Timed
@@ -32,22 +31,12 @@ public class SiteResource implements BeanFactoryAware {
     }
 
     @Path("/page/{slug}")
-    public PageResource pageResource(@PathParam("domain") String domain) {
-        Site site = this.siteService.getSiteByDomain(domain);
-
-        PageResource pageResource = this.beanFactory.getBean(PageResource.class);
-        pageResource.setSite(site);
-        return pageResource;
-//        return new PageResource(site);
+    public PageResource pageResource() {
+        return this.pageResource;
     }
 
     @Autowired
-    public void setSiteService(SiteService siteService) {
-        this.siteService = siteService;
-    }
-
-    @Override
-    public void setBeanFactory(BeanFactory beanFactory) {
-        this.beanFactory = beanFactory;
+    public void setPageResource(PageResource pageResource) {
+        this.pageResource = pageResource;
     }
 }
