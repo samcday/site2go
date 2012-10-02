@@ -8,6 +8,7 @@ import com.site2go.services.SiteService;
 import org.dozer.Mapper;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -39,7 +40,7 @@ public class SiteServiceTest {
 
     @Test
     public void testFindByNonexistentDomainReturnsNull() {
-        when(this.mockSiteRepository.findByDomain("test.com")).thenReturn(null);
+        when(this.mockSiteRepository.findByDomain("test.com")).thenThrow(new EmptyResultDataAccessException(1));
         Site site = this.siteService.getSiteByDomain("test.com");
         assertNull(site);
     }
