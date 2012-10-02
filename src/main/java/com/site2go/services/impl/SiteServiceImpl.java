@@ -6,6 +6,7 @@ import com.site2go.dto.Site;
 import com.site2go.services.SiteService;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,10 +16,14 @@ public class SiteServiceImpl implements SiteService {
 
     @Override
     public Site getSiteByDomain(String domain) {
-        SiteEntity siteEntity = this.siteRepository.findByDomain(domain);
-        if(siteEntity == null) {
+        SiteEntity siteEntity;
+        try {
+            siteEntity = this.siteRepository.findByDomain(domain);
+        }
+        catch(EmptyResultDataAccessException erdae) {
             return null;
         }
+
         return this.mapper.map(siteEntity, Site.class);
     }
 
