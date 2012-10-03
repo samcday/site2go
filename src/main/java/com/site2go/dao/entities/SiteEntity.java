@@ -15,6 +15,8 @@ import javax.persistence.*;
 })
 public class SiteEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "site_id_seq_gen")
+    @SequenceGenerator(name = "site_id_seq_gen", sequenceName = "site_id_seq")
     private Integer id;
     private String name;
     private String domain;

@@ -15,6 +15,8 @@ import javax.persistence.*;
 })
 public class PageEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "page_id_seq_gen")
+    @SequenceGenerator(name = "page_id_seq_gen", sequenceName = "page_id_seq")
     private Integer id;
 
     private String slug;

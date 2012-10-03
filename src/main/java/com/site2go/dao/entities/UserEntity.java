@@ -3,14 +3,14 @@ package com.site2go.dao.entities;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
 public class UserEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "user_id_seq_gen")
+    @SequenceGenerator(name = "user_id_seq_gen", sequenceName = "user_id_seq")
     private Integer id;
 
     private String email;

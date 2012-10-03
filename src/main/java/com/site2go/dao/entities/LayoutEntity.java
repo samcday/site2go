@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Table(name = "layout")
 public class LayoutEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "layout_id_seq_gen")
+    @SequenceGenerator(name = "layout_id_seq_gen", sequenceName = "layout_id_seq")
     private Integer id;
 
     private String slug;
