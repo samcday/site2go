@@ -17,7 +17,7 @@ public class LayoutEntity {
     private String name;
 
     @Lob
-    private String content;
+    private String template;
 
     @ManyToOne
     private SiteEntity site;
@@ -50,6 +50,14 @@ public class LayoutEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(String template) {
+        this.template = template;
     }
 
     public SiteEntity getSite() {
