@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -41,7 +41,7 @@ public class PersistenceConfig {
 
     @Bean
     public PlatformTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(this.dataSource);
+        return new JpaTransactionManager(this.entityManagerFactoryBean().getObject());
     }
 
     @Bean
