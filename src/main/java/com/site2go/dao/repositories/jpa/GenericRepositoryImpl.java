@@ -1,11 +1,14 @@
 package com.site2go.dao.repositories.jpa;
 
 import com.site2go.dao.repositories.GenericRepository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
 
+@Transactional(propagation = Propagation.MANDATORY)
 public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     @PersistenceContext
     protected EntityManager entityManager;
