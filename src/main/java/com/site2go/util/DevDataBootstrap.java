@@ -1,8 +1,10 @@
 package com.site2go.util;
 
 import com.site2go.annotations.Dev;
+import com.site2go.dao.entities.LayoutEntity;
 import com.site2go.dao.entities.PageEntity;
 import com.site2go.dao.entities.SiteEntity;
+import com.site2go.dao.repositories.LayoutRepository;
 import com.site2go.dao.repositories.PageRepository;
 import com.site2go.dao.repositories.SiteRepository;
 import org.joda.time.DateTime;
@@ -18,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class DevDataBootstrap implements ApplicationListener {
     @Autowired SiteRepository siteRepository;
     @Autowired PageRepository pageRepository;
+    @Autowired LayoutRepository layoutRepository;
 
     // Maybe I just don't understand AOP and Spring transaction management, but I'm pretty sure this is a bug: have to
     // annotate this method, rather than the bootstrap call, otherwise a transaction isn't configured.
@@ -46,5 +49,14 @@ public class DevDataBootstrap implements ApplicationListener {
         pageEntity.setCreatedDate(new DateTime("2012-01-01"));
         pageEntity.setModifiedDate(new DateTime("2012-02-01"));
         this.pageRepository.save(pageEntity);
+
+        LayoutEntity layoutEntity = new LayoutEntity();
+        layoutEntity.setSite(siteEntity);
+        layoutEntity.setSlug("testlayout");
+        layoutEntity.setName("Test Layout");
+        layoutEntity.setTemplate("test template");
+        layoutEntity.setCreatedDate(new DateTime("2012-01-01"));
+        layoutEntity.setModifiedDate(new DateTime("2012-02-01"));
+        this.layoutRepository.save(layoutEntity);
     }
 }

@@ -7,6 +7,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "layout")
+@NamedQueries({
+    @NamedQuery(
+        name = "findLayoutBySite",
+        query = "select l from LayoutEntity l where l.site.id = :id"
+    ),
+    @NamedQuery(
+        name = "findLayoutBySiteAndSlug",
+        query = "select l from LayoutEntity l where l.site.id = :id and l.slug = :slug"
+    )
+})
 public class LayoutEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "layout_id_seq_gen")

@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "page")
 @NamedQueries({
     @NamedQuery(
-        name = "findBySiteAndSlug",
+        name = "findPageBySiteAndSlug",
         query = "select p from PageEntity p where p.site.id = :siteId and p.slug = :slug"
     )
 })

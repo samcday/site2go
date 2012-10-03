@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public class PageRepositoryImpl extends GenericRepositoryImpl<PageEntity> implements PageRepository {
     @Override
     public PageEntity findBySiteAndSlug(Integer siteId, String slug) {
-        return this.entityManager.createNamedQuery("findBySiteAndSlug", PageEntity.class)
+        return this.entityManager.createNamedQuery("findPageBySiteAndSlug", PageEntity.class)
             .setParameter("siteId", siteId)
             .setParameter("slug", slug)
             .getSingleResult();

@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
 
 @Transactional(propagation = Propagation.MANDATORY)
-public class GenericRepositoryImpl<T> implements GenericRepository<T> {
+public abstract class GenericRepositoryImpl<T> implements GenericRepository<T> {
     @PersistenceContext
     protected EntityManager entityManager;
 
