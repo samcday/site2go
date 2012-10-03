@@ -21,8 +21,10 @@ create table page (
 );
 
 create table layout (
-  id int not null primary key,
+  id int not null auto_increment primary key,
   name varchar(255),
+  slug varchar(255),
+  template clob,
   site_id int,
   modified_date timestamp not null,
   created_date timestamp not null
