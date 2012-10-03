@@ -19,7 +19,6 @@ public class EmbeddedDBConfig {
             .setType(EmbeddedDatabaseType.H2)
             .addScript("classpath:com/site2go/sql/tables.sql")
             .addScript("classpath:com/site2go/sql/sequences.sql")
-            .addScript("classpath:com/site2go/sql/data.sql")
             .build();
     }
 }

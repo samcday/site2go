@@ -2,6 +2,7 @@ package com.site2go.dao.repositories.jpa;
 
 import com.site2go.spring.EmbeddedDBConfig;
 import com.site2go.spring.PersistenceConfig;
+import com.site2go.util.DevDataBootstrap;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,7 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 @ActiveProfiles("dev")
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {
     EmbeddedDBConfig.class,
-    PersistenceConfig.class
+    PersistenceConfig.class,
+    DevDataBootstrap.class
 })
 @Transactional
 public abstract class RepositoryITBase {
