@@ -32,6 +32,11 @@ public class DevDataBootstrap implements ApplicationListener {
     }
 
     public void bootstrap() {
+        this.generateTestSite1();
+        this.generateTestSite2();
+    }
+
+    private void generateTestSite1() {
         SiteEntity siteEntity = new SiteEntity();
         siteEntity.setName("Test Site");
         siteEntity.setDomain("test.com");
@@ -58,5 +63,14 @@ public class DevDataBootstrap implements ApplicationListener {
         layoutEntity.setCreatedDate(new DateTime("2012-01-01"));
         layoutEntity.setModifiedDate(new DateTime("2012-02-01"));
         this.layoutRepository.save(layoutEntity);
+    }
+
+    private void generateTestSite2() {
+        SiteEntity siteEntity = new SiteEntity();
+        siteEntity.setName("Another Site");
+        siteEntity.setDomain("another.com");
+        siteEntity.setCreatedDate(new DateTime("2012-01-01"));
+        siteEntity.setModifiedDate(new DateTime("2012-02-01"));
+        this.siteRepository.save(siteEntity);
     }
 }
