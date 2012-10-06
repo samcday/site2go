@@ -1,5 +1,6 @@
 package com.site2go.dao.entities;
 
+import com.google.common.base.Objects;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
@@ -92,5 +93,18 @@ public class LayoutEntity {
 
     public void setCreatedDate(DateTime createdDate) {
         this.createdDate = createdDate;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof LayoutEntity)) return false;
+        LayoutEntity other = (LayoutEntity)obj;
+        return Objects.equal(this.site, other.site)
+            && Objects.equal(this.slug, other.slug);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.site, this.slug);
     }
 }
