@@ -18,6 +18,7 @@
         <hibernate.version>4.1.7.Final</hibernate.version>
         <jodatime.version>2.1</jodatime.version>
         <spring.version>3.1.2.RELEASE</spring.version>
+        <groovy.version>1.8.8</groovy.version>
     </properties>
 
     <dependencyManagement>
@@ -99,6 +100,12 @@
                 <artifactId>dozer</artifactId>
                 <version>5.3.2</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${groovy.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -168,6 +175,12 @@
             <groupId>com.yammer.dropwizard</groupId>
             <artifactId>dropwizard-testing</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <scope>test</scope> <!-- Only bringing in Groovy for test scope to configure logback -->
         </dependency>
     </dependencies>
 
