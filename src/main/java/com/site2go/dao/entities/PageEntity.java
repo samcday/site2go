@@ -12,6 +12,10 @@ import javax.persistence.*;
     @NamedQuery(
         name = "findPageBySiteAndSlug",
         query = "select p from PageEntity p where p.site.id = :siteId and p.slug = :slug"
+    ),
+    @NamedQuery(
+        name = "listPagesBySite",
+        query = "select p from PageEntity p where p.site.id = :siteId"
     )
 })
 public class PageEntity {
