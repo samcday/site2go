@@ -15,31 +15,36 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
+
+import javax.annotation.PostConstruct;
 
 @Dev
 @Component
-@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class DevDataBootstrap implements ApplicationListener {
-    @Autowired SiteRepository siteRepository;
-    @Autowired PageRepository pageRepository;
-    @Autowired LayoutRepository layoutRepository;
+public class DevDataBootstrap {
+    @Autowired private SiteRepository siteRepository;
+    @Autowired private PageRepository pageRepository;
+    @Autowired private LayoutRepository layoutRepository;
+    @Autowired private PlatformTransactionManager transactionManager;
 
     public SiteEntity site1;
     public PageEntity site1_page1;
 
-    // Maybe I just don't understand AOP and Spring transaction management, but I'm pretty sure this is a bug: have to
-    // annotate this method, rather than the bootstrap call, otherwise a transaction isn't configured.
-    @Transactional
-    public void onApplicationEvent(ApplicationEvent event) {
-        if(event instanceof ContextRefreshedEvent) {
-            this.bootstrap();
-        }
-    }
-
+    @PostConstruct
     public void bootstrap() {
-        this.generateTestSite1();
-        this.generateTestSite2();
+        new TransactionTemplate(this.transactionManager).execute(new TransactionCallback<Void>() {
+            @Override
+            public Void doInTransaction(TransactionStatus transactionStatus) {
+                DevDataBootstrap.this.generateTestSite1();
+                DevDataBootstrap.this.generateTestSite2();
+                return null;
+            }
+        });
     }
 
     private void generateTestSite1() {
