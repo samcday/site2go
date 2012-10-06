@@ -11,16 +11,22 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Dev
 @Component
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class DevDataBootstrap implements ApplicationListener {
     @Autowired SiteRepository siteRepository;
     @Autowired PageRepository pageRepository;
     @Autowired LayoutRepository layoutRepository;
+
+    public SiteEntity site1;
+    public PageEntity site1_page1;
 
     // Maybe I just don't understand AOP and Spring transaction management, but I'm pretty sure this is a bug: have to
     // annotate this method, rather than the bootstrap call, otherwise a transaction isn't configured.
@@ -37,14 +43,14 @@ public class DevDataBootstrap implements ApplicationListener {
     }
 
     private void generateTestSite1() {
-        SiteEntity siteEntity = new SiteEntity();
+        SiteEntity siteEntity = this.site1 = new SiteEntity();
         siteEntity.setName("Test Site");
         siteEntity.setDomain("test.com");
         siteEntity.setCreatedDate(new DateTime("2012-01-01"));
         siteEntity.setModifiedDate(new DateTime("2012-02-01"));
         this.siteRepository.save(siteEntity);
 
-        PageEntity pageEntity = new PageEntity();
+        PageEntity pageEntity = this.site1_page1 = new PageEntity();
         pageEntity.setSite(siteEntity);
         pageEntity.setSlug("testpage");
         pageEntity.setTitle("Title");
