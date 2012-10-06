@@ -1,7 +1,6 @@
 package com.site2go.resources.providers;
 
 import com.site2go.dto.Site;
-import com.site2go.resources.SiteResource;
 import com.site2go.resources.providers.fixtures.SiteProviderTestResource;
 import com.site2go.services.SiteService;
 import com.sun.jersey.api.client.ClientResponse;
@@ -10,9 +9,7 @@ import org.junit.Test;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class SiteProviderTest extends ResourceTest {
     private Site site = new Site() {{

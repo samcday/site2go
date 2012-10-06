@@ -4,14 +4,14 @@ import com.site2go.dao.entities.SiteEntity;
 import com.site2go.dao.repositories.SiteRepository;
 import com.site2go.dto.Site;
 import com.site2go.dto.mapper.Site2goBeanMapper;
-import com.site2go.services.SiteService;
 import org.dozer.Mapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class SiteServiceTest {
     private Mapper beanMapper;

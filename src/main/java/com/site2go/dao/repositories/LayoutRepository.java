@@ -1,7 +1,6 @@
 package com.site2go.dao.repositories;
 
 import com.site2go.dao.entities.LayoutEntity;
-import com.site2go.dao.entities.SiteEntity;
 
 import java.util.Set;
 
