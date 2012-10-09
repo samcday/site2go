@@ -16,15 +16,18 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.Providers;
 import java.lang.reflect.Type;
 import java.util.Map;
 
 @Component
 @ServerProviderOnly
-public class SiteProvider extends AbstractHttpContextInjectable<Site> implements InjectableProvider<Context, Type> {
+public class SiteProvider implements InjectableProvider<Context, Type>, Injectable<Site> {
     private static final String SITE_PROPERTY_KEY = "site2go_site";
 
+    @Context private HttpContext httpContext;
+    @Context private UriInfo uriInfo;
     private SiteService siteService;
 
     @Override
@@ -41,9 +44,9 @@ public class SiteProvider extends AbstractHttpContextInjectable<Site> implements
     }
 
     @Override
-    public Site getValue(HttpContext httpContext) {
-        Map<String, Object> props = httpContext.getProperties();
-        MultivaluedMap<String, String> pathParams = httpContext.getUriInfo().getPathParameters();
+    public Site getValue() {
+        Map<String, Object> props = this.httpContext.getProperties();
+        MultivaluedMap<String, String> pathParams = this.uriInfo.getPathParameters();
         Site site = (Site)props.get(SITE_PROPERTY_KEY);
         if(site != null) {
             return site;
