@@ -1,10 +1,10 @@
 package com.site2go.resources.providers;
 
 import com.site2go.dto.Site;
+import com.site2go.resources.ResourceTest;
 import com.site2go.resources.providers.fixtures.SiteProviderTestResource;
 import com.site2go.services.SiteService;
 import com.sun.jersey.api.client.ClientResponse;
-import com.yammer.dropwizard.testing.ResourceTest;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -23,11 +23,7 @@ public class SiteProviderTest extends ResourceTest {
         when(this.siteService.getSiteByDomain("test.com")).thenReturn(site);
         SiteProvider siteProvider = new SiteProvider();
         siteProvider.setSiteService(this.siteService);
-        // This is somewhat unfortunate, this.addProvider only accepts a Class, which isn't terribly useful if we need
-        // to inject collaborators onto it. By calling this.addResource with a Provider below, we're exploiting the fact
-        // that ResourceTest doesn't differentiate, it just has a List of Objects it registers with Jersey.
-        this.addResource(siteProvider);
-
+        this.addProvider(siteProvider);
         this.addResource(new SiteProviderTestResource());
     }
 
