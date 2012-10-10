@@ -3,6 +3,7 @@ package com.site2go.services.impl;
 import com.site2go.dao.entities.UserEntity;
 import com.site2go.dao.repositories.UserRepository;
 import com.site2go.dto.User;
+import com.site2go.dto.mapper.Site2goBeanMapper;
 import com.site2go.services.UserService;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +23,7 @@ public class UserServiceImplTest {
     public void setUp() {
         this.mockUserRepository = mock(UserRepository.class);
         this.userServiceImpl = new UserServiceImpl();
+        this.userServiceImpl.setBeanMapper(new Site2goBeanMapper());
         this.userServiceImpl.setUserRepository(this.mockUserRepository);
     }
 
