@@ -1,5 +1,6 @@
 package com.site2go.dao.entities;
 
+import com.google.common.base.Objects;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
@@ -70,5 +71,17 @@ public class UserEntity {
 
     public void setCreatedDate(DateTime createdDate) {
         this.createdDate = createdDate;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof UserEntity)) return false;
+        UserEntity other = (UserEntity)obj;
+        return Objects.equal(this.email, other.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.email.hashCode();
     }
 }
