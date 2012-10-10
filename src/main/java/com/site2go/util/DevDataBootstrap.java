@@ -10,6 +10,7 @@ import com.site2go.dao.repositories.PageRepository;
 import com.site2go.dao.repositories.SiteRepository;
 import com.site2go.dao.repositories.UserRepository;
 import org.joda.time.DateTime;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -48,7 +49,7 @@ public class DevDataBootstrap {
     private void generateSuperUser() {
         UserEntity userEntity = this.superuser = new UserEntity();
         userEntity.setEmail("super@user.com");
-        userEntity.setPassword("foo");
+        userEntity.setPassword(BCrypt.hashpw("supa", BCrypt.gensalt()));
         userEntity.setCreatedDate(new DateTime("2012-01-01"));
         userEntity.setModifiedDate(new DateTime("2012-02-01"));
         this.userRepository.save(userEntity);
