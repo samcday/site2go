@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.lang.reflect.ParameterizedType;
 
 @Transactional(propagation = Propagation.MANDATORY)
@@ -36,5 +37,9 @@ public abstract class GenericRepositoryImpl<T> implements GenericRepository<T> {
     @Override
     public void save(T entity) {
         this.entityManager.persist(entity);
+    }
+
+    protected TypedQuery<T> createNamedQuery(String name) {
+        return this.entityManager.createNamedQuery(name, this.clazz);
     }
 }

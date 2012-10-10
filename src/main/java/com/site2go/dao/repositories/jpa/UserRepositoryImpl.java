@@ -6,4 +6,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserRepositoryImpl extends GenericRepositoryImpl<UserEntity> implements UserRepository {
+    @Override
+    public UserEntity findByEmail(String email) {
+        return this.createNamedQuery("findUserByEmail")
+            .setParameter("email", email)
+            .getSingleResult();
+    }
 }

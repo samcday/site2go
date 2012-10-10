@@ -29,3 +29,12 @@ create table layout (
   modified_date timestamp not null,
   created_date timestamp not null
 );
+
+create table user (
+  id int not null auto_increment primary key,
+  email varchar(255),
+  password varchar(255),
+  super_admin int(1),
+  modified_date timestamp not null,
+  created_date timestamp not null
+);

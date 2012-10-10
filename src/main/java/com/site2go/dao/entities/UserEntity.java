@@ -8,6 +8,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
+@NamedQueries({
+    @NamedQuery(
+        name = "findUserByEmail",
+        query = "select u from UserEntity u where u.email = :email"
+    )
+})
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "user_id_seq_gen")
