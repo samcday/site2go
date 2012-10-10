@@ -4,7 +4,6 @@ import com.site2go.dao.entities.UserEntity;
 import com.site2go.dao.repositories.UserRepository;
 import com.site2go.dto.User;
 import com.site2go.dto.mapper.Site2goBeanMapper;
-import com.site2go.services.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mindrot.jbcrypt.BCrypt;
