@@ -38,4 +38,10 @@ public class SiteProviderTest extends ResourceTest {
         assertThat(client().resource("/idont.exist").get(ClientResponse.class).getClientResponseStatus(), equalTo(ClientResponse.Status.NOT_FOUND));
         verify(this.siteService).getSiteByDomain("idont.exist");
     }
+
+    @Test
+    public void testValidSiteOnlyLoadedOnce() {
+        assertThat(client().resource("/test.com/twice").get(Site.class).getDomain(), equalTo("test.com"));
+        verify(this.siteService).getSiteByDomain("test.com");
+    }
 }

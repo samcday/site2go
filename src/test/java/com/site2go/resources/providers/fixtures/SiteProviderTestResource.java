@@ -15,4 +15,11 @@ public class SiteProviderTestResource {
     public Site get(@Context Site site) {
         return site;
     }
+
+    @Path("/twice")
+    @GET
+    public Site get(@Context Site site, @Context Site site2) {
+        assert site == site2;
+        return site;
+    }
 }
