@@ -20,6 +20,7 @@
         <jodatime.version>2.1</jodatime.version>
         <spring.version>3.1.2.RELEASE</spring.version>
         <groovy.version>1.8.8</groovy.version>
+        <jbcrypt.version>0.3m</jbcrypt.version>
 
         <!-- Build plugin versions -->
         <build.plugin.shade.version>2.0</build.plugin.shade.version>
@@ -114,6 +115,12 @@
                 <artifactId>groovy-all</artifactId>
                 <version>${groovy.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.mindrot</groupId>
+                <artifactId>jbcrypt</artifactId>
+                <version>${jbcrypt.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -176,6 +183,11 @@
         <dependency>
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
         </dependency>
 
         <!-- TEST dependencies -->
