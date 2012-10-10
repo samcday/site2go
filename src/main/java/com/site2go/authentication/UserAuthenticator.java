@@ -14,7 +14,15 @@ public class UserAuthenticator implements Authenticator<BasicCredentials, User> 
 
     @Override
     public Optional<User> authenticate(BasicCredentials basicCredentials) throws AuthenticationException {
-        throw new NotImplementedException();
+        User user;
+        try {
+            user = this.userService.login(basicCredentials.getUsername(), basicCredentials.getPassword());
+        }
+        catch(Exception e) {
+            throw new AuthenticationException(e);
+        }
+
+        return Optional.fromNullable(user);
     }
 
     @Autowired
