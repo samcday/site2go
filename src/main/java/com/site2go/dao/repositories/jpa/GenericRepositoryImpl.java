@@ -1,6 +1,7 @@
 package com.site2go.dao.repositories.jpa;
 
 import com.site2go.dao.repositories.GenericRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.lang.reflect.ParameterizedType;
 
-@Transactional(propagation = Propagation.MANDATORY)
+@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = {EmptyResultDataAccessException.class})
 public abstract class GenericRepositoryImpl<T> implements GenericRepository<T> {
     @PersistenceContext
     protected EntityManager entityManager;
