@@ -12,6 +12,7 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class Site2goBeanMapperTest {
@@ -25,6 +26,7 @@ public class Site2goBeanMapperTest {
     @Test
     public void testStandardSiteEntityMapping() {
         SiteEntity src = new SiteEntity();
+        src.setId(666);
         src.setName("Test Site");
         src.setModifiedDate(new DateTime("2012-02-01"));
         src.setCreatedDate(new DateTime("2012-01-01"));
@@ -34,6 +36,7 @@ public class Site2goBeanMapperTest {
         }});
 
         Site dest = this.beanMapper.map(src, Site.class);
+        assertThat(dest.getId(), is(666));
         assertEquals("Test Site", dest.getName());
         assertEquals("test.com", dest.getDomain());
         assertEquals("testlayout", dest.getDefaultLayout());
@@ -43,6 +46,7 @@ public class Site2goBeanMapperTest {
     public void testEmptySiteEntityMapping() {
         SiteEntity src = new SiteEntity();
         Site dest = this.beanMapper.map(src, Site.class);
+        assertNull(dest.getId());
         assertNull(dest.getDefaultLayout());
         assertNull(dest.getCreatedDate());
         assertNull(dest.getModifiedDate());
@@ -53,12 +57,14 @@ public class Site2goBeanMapperTest {
     @Test
     public void testStandardLayoutEntityMapping() {
         LayoutEntity src = new LayoutEntity();
+        src.setId(666);
         src.setName("testlayout");
         src.setSite(new SiteEntity() {{
             this.setDomain("test.com");
         }});
 
         Layout dest = this.beanMapper.map(src, Layout.class);
+        assertThat(dest.getId(), is(666));
         assertEquals("testlayout", dest.getName());
         assertEquals("test.com", dest.getSite());
     }
@@ -67,6 +73,7 @@ public class Site2goBeanMapperTest {
     public void testEmptyLayoutEntityMapping() {
         LayoutEntity src = new LayoutEntity();
         Layout dest = this.beanMapper.map(src, Layout.class);
+        assertNull(dest.getId());
         assertNull(dest.getName());
         assertNull(dest.getSite());
         assertNull(dest.getCreatedDate());
@@ -76,6 +83,7 @@ public class Site2goBeanMapperTest {
     @Test
     public void testStandardPageEntityMapping() {
         PageEntity src = new PageEntity();
+        src.setId(666);
         src.setSlug("testpage");
         src.setTitle("Test Page");
         src.setLayout(new LayoutEntity() {{
@@ -86,6 +94,7 @@ public class Site2goBeanMapperTest {
         src.setMetaKeywords("Test Keywords");
 
         Page dest = this.beanMapper.map(src, Page.class);
+        assertThat(dest.getId(), is(666));
         assertEquals("testpage", dest.getSlug());
         assertEquals("Test Page", dest.getTitle());
         assertEquals("testlayout", dest.getLayout());
@@ -98,6 +107,7 @@ public class Site2goBeanMapperTest {
     public void testEmptyPageEntityMapping() {
         PageEntity src = new PageEntity();
         Page dest = this.beanMapper.map(src, Page.class);
+        assertNull(dest.getId());
         assertNull(dest.getLayout());
         assertNull(dest.getSlug());
         assertNull(dest.getTitle());
@@ -109,10 +119,12 @@ public class Site2goBeanMapperTest {
     @Test
     public void testStandardUserEntityMapping() {
         UserEntity src = new UserEntity();
+        src.setId(666);
         src.setEmail("test@test.com");
         src.setSuperAdmin(true);
 
         User dest = this.beanMapper.map(src, User.class);
+        assertThat(dest.getId(), is(666));
         assertEquals("test@test.com", dest.getEmail());
         assertTrue(dest.getSuperAdmin());
     }
@@ -121,7 +133,7 @@ public class Site2goBeanMapperTest {
     public void testEmptyUserEntityMapping() {
         UserEntity src = new UserEntity();
         User dest = this.beanMapper.map(src, User.class);
-
+        assertNull(dest.getId());
         assertNull(dest.getEmail());
         assertNull(dest.getSuperAdmin());
         assertNull(dest.getCreatedDate());

@@ -1,13 +1,24 @@
 package com.site2go.dto;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.joda.time.DateTime;
 
 public class Site {
+    private Integer id;
     private String name;
     private String domain;
     private DateTime modifiedDate;
     private DateTime createdDate;
     private String defaultLayout;
+
+    @JsonIgnore
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
