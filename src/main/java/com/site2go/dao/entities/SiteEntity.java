@@ -24,7 +24,7 @@ public class SiteEntity {
     private String name;
     private String domain;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
         joinColumns = { @JoinColumn(name = "site_id", referencedColumnName = "id") },
         inverseJoinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }
@@ -106,5 +106,12 @@ public class SiteEntity {
     @Override
     public int hashCode() {
         return Objects.hashCode(this.domain);
+    }
+
+    @PreUpdate
+    @PrePersist
+    private void modifyTimestamps() {
+        if(this.createdDate == null) this.createdDate = new DateTime();
+        this.modifiedDate = new DateTime();
     }
 }

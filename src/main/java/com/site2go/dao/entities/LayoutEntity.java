@@ -107,4 +107,11 @@ public class LayoutEntity {
     public int hashCode() {
         return Objects.hashCode(this.site, this.slug);
     }
+
+    @PreUpdate
+    @PrePersist
+    private void modifyTimestamps() {
+        if(this.createdDate == null) this.createdDate = new DateTime();
+        this.modifiedDate = new DateTime();
+    }
 }
