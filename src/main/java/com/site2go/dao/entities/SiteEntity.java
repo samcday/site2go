@@ -1,10 +1,12 @@
 package com.site2go.dao.entities;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Sets;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "site")
@@ -21,6 +23,13 @@ public class SiteEntity {
     private Integer id;
     private String name;
     private String domain;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        joinColumns = { @JoinColumn(name = "site_id", referencedColumnName = "id") },
+        inverseJoinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }
+    )
+    private Set<UserEntity> users = Sets.newHashSet();
 
     @ManyToOne
     private LayoutEntity defaultLayout;
@@ -53,6 +62,14 @@ public class SiteEntity {
 
     public void setDomain(String domain) {
         this.domain = domain;
+    }
+
+    public Set<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<UserEntity> users) {
+        this.users = users;
     }
 
     public LayoutEntity getDefaultLayout() {

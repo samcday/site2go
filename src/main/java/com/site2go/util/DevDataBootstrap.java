@@ -32,13 +32,14 @@ public class DevDataBootstrap {
     public SiteEntity site1;
     public PageEntity site1_page1;
     public UserEntity superuser;
+    public UserEntity user1;
 
     @PostConstruct
     public void bootstrap() {
         new TransactionTemplate(this.transactionManager).execute(new TransactionCallback<Void>() {
             @Override
             public Void doInTransaction(TransactionStatus transactionStatus) {
-                DevDataBootstrap.this.generateSuperUser();
+                DevDataBootstrap.this.generateUsers();
                 DevDataBootstrap.this.generateTestSite1();
                 DevDataBootstrap.this.generateTestSite2();
                 return null;
@@ -46,13 +47,19 @@ public class DevDataBootstrap {
         });
     }
 
-    private void generateSuperUser() {
+    private void generateUsers() {
         UserEntity userEntity = this.superuser = new UserEntity();
         userEntity.setEmail("super@user.com");
         userEntity.setPassword(BCrypt.hashpw("supa", BCrypt.gensalt()));
         userEntity.setCreatedDate(new DateTime("2012-01-01"));
         userEntity.setModifiedDate(new DateTime("2012-02-01"));
         this.userRepository.save(userEntity);
+
+        this.user1 = new UserEntity();
+        this.user1.setEmail("user@one.com");
+        this.user1.setCreatedDate(new DateTime("2012-01-01"));
+        this.user1.setModifiedDate(new DateTime("2012-02-01"));
+        this.userRepository.save(this.user1);
     }
 
     private void generateTestSite1() {
@@ -61,7 +68,11 @@ public class DevDataBootstrap {
         siteEntity.setDomain("test.com");
         siteEntity.setCreatedDate(new DateTime("2012-01-01"));
         siteEntity.setModifiedDate(new DateTime("2012-02-01"));
+        siteEntity.getUsers().add(this.user1);
         this.siteRepository.save(siteEntity);
+
+        this.user1.getSites().add(siteEntity);
+        this.userRepository.save(this.user1);
 
         PageEntity pageEntity = this.site1_page1 = new PageEntity();
         pageEntity.setSite(siteEntity);

@@ -38,3 +38,9 @@ create table user (
   modified_date timestamp not null,
   created_date timestamp not null
 );
+
+create table site_users (
+  site_id int not null,
+  user_id int not null,
+  primary key(site_id, user_id)
+);
