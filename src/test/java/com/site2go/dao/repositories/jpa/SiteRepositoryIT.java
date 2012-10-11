@@ -1,15 +1,22 @@
 package com.site2go.dao.repositories.jpa;
 
 import com.site2go.dao.entities.SiteEntity;
+import com.site2go.dao.entities.UserEntity;
 import com.site2go.dao.repositories.SiteRepository;
+import com.site2go.util.DevDataBootstrap;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import java.util.Set;
+
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class SiteRepositoryIT extends RepositoryITBase {
     @Autowired private SiteRepository siteRepository;
+    @Autowired private DevDataBootstrap devDataBootstrap;
 
     @Test
     public void testGetById() {
@@ -35,7 +42,15 @@ public class SiteRepositoryIT extends RepositoryITBase {
     }
 
     @Test(expected = EmptyResultDataAccessException.class)
-    public void findByNonexistentDomain() {
+    public void testFindByNonexistentDomain() {
         this.siteRepository.findByDomain("test.comzzzzz");
+    }
+
+    @Test
+    public void testUsersCollection() {
+        SiteEntity siteEntity = this.siteRepository.getById(1);
+        Set<UserEntity> users = siteEntity.getUsers();
+        assertThat(users.size(), is(1));
+        assertThat(users, hasItem(this.devDataBootstrap.user1));
     }
 }

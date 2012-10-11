@@ -25,4 +25,11 @@ public class UserRepositoryIT extends RepositoryITBase {
     public void testFindByNonexistentEmail() {
         this.userRepository.findByEmail("foo@nope.com");
     }
+
+    @Test
+    public void testSitesCollection() {
+        UserEntity userEntity = this.userRepository.getById(1);
+        assertThat(userEntity.getSites().size(), is(1));
+        assertThat(userEntity.getSites(), hasItem(this.devDataBootstrap.site1));
+    }
 }
