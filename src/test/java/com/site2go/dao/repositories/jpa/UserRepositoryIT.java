@@ -28,7 +28,7 @@ public class UserRepositoryIT extends RepositoryITBase {
 
     @Test
     public void testSitesCollection() {
-        UserEntity userEntity = this.userRepository.getById(1);
+        UserEntity userEntity = this.userRepository.getById(2);
         assertThat(userEntity.getSites().size(), is(1));
         assertThat(userEntity.getSites(), hasItem(this.devDataBootstrap.site1));
     }
