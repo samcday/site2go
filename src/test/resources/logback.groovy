@@ -2,6 +2,8 @@ import ch.qos.logback.classic.encoder.PatternLayoutEncoder
 import ch.qos.logback.core.ConsoleAppender
 
 import static ch.qos.logback.classic.Level.WARN
+import static ch.qos.logback.classic.Level.INFO
+import static ch.qos.logback.classic.Level.TRACE
 
 appender("STDOUT", ConsoleAppender) {
     encoder(PatternLayoutEncoder) {
@@ -9,4 +11,6 @@ appender("STDOUT", ConsoleAppender) {
     }
 }
 
+//logger("org.hibernate.SQL", TRACE, ["STDOUT"])
+//logger("org.hibernate.type", TRACE, ["STDOUT"])
 root(WARN, ["STDOUT"])
