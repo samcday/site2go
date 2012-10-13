@@ -62,9 +62,4 @@ public class SiteProvider implements InjectableProvider<Context, Type>, Injectab
     public void setSiteService(SiteService siteService) {
         this.siteService = siteService;
     }
-
-    @Context
-    public void setAwesome(HttpContext app) {
-        System.out.println("lol");
-    }
 }
