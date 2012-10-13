@@ -25,6 +25,7 @@
         <!-- Build plugin versions -->
         <build.plugin.shade.version>2.0</build.plugin.shade.version>
         <build.plugin.compiler.version>2.5.1</build.plugin.compiler.version>
+        <build.plugin.surefire.version>2.12.4</build.plugin.surefire.version>
         <build.plugin.failsafe.version>2.12.4</build.plugin.failsafe.version>
         <build.plugin.jar.version>2.4</build.plugin.jar.version>
         <build.plugin.jacoco.version>0.6.0.201210061924</build.plugin.jacoco.version>
@@ -277,6 +278,20 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${build.plugin.surefire.version}</version>
+                <configuration>
+                    <systemProperties>
+                        <property>
+                            <name>java.util.logging.config.file</name>
+                            <value>${project.build.outputDirectory}/logging.properties</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
             </plugin>
 
             <!-- This configuration is needed to make sure successive runs of package don't cause Shade plugin to freak
