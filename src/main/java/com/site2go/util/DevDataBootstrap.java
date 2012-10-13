@@ -51,14 +51,10 @@ public class DevDataBootstrap {
         UserEntity userEntity = this.superuser = new UserEntity();
         userEntity.setEmail("super@user.com");
         userEntity.setPassword(BCrypt.hashpw("supa", BCrypt.gensalt()));
-        userEntity.setCreatedDate(new DateTime("2012-01-01"));
-        userEntity.setModifiedDate(new DateTime("2012-02-01"));
         this.userRepository.save(userEntity);
 
         this.user1 = new UserEntity();
         this.user1.setEmail("user@one.com");
-        this.user1.setCreatedDate(new DateTime("2012-01-01"));
-        this.user1.setModifiedDate(new DateTime("2012-02-01"));
         this.userRepository.save(this.user1);
     }
 
@@ -66,12 +62,9 @@ public class DevDataBootstrap {
         SiteEntity siteEntity = this.site1 = new SiteEntity();
         siteEntity.setName("Test Site");
         siteEntity.setDomain("test.com");
-        siteEntity.setCreatedDate(new DateTime("2012-01-01"));
-        siteEntity.setModifiedDate(new DateTime("2012-02-01"));
         siteEntity.getUsers().add(this.user1);
-        this.siteRepository.save(siteEntity);
-
         this.user1.getSites().add(siteEntity);
+        this.siteRepository.save(siteEntity);
         this.userRepository.save(this.user1);
 
         PageEntity pageEntity = this.site1_page1 = new PageEntity();
@@ -81,8 +74,6 @@ public class DevDataBootstrap {
         pageEntity.setMetaTitle("Meta Title");
         pageEntity.setMetaDescription("Meta Description");
         pageEntity.setMetaKeywords("Meta Keywords");
-        pageEntity.setCreatedDate(new DateTime("2012-01-01"));
-        pageEntity.setModifiedDate(new DateTime("2012-02-01"));
         this.pageRepository.save(pageEntity);
 
         LayoutEntity layoutEntity = new LayoutEntity();
@@ -90,8 +81,6 @@ public class DevDataBootstrap {
         layoutEntity.setSlug("testlayout");
         layoutEntity.setName("Test Layout");
         layoutEntity.setTemplate("test template");
-        layoutEntity.setCreatedDate(new DateTime("2012-01-01"));
-        layoutEntity.setModifiedDate(new DateTime("2012-02-01"));
         this.layoutRepository.save(layoutEntity);
     }
 
@@ -99,8 +88,6 @@ public class DevDataBootstrap {
         SiteEntity siteEntity = new SiteEntity();
         siteEntity.setName("Another Site");
         siteEntity.setDomain("another.com");
-        siteEntity.setCreatedDate(new DateTime("2012-01-01"));
-        siteEntity.setModifiedDate(new DateTime("2012-02-01"));
         this.siteRepository.save(siteEntity);
     }
 }
