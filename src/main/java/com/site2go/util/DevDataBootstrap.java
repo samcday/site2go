@@ -55,6 +55,7 @@ public class DevDataBootstrap {
 
         this.user1 = new UserEntity();
         this.user1.setEmail("user@one.com");
+        this.user1.setPassword(BCrypt.hashpw("one", BCrypt.gensalt()));
         this.userRepository.save(this.user1);
     }
 
