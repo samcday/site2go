@@ -41,14 +41,20 @@ public class SiteServiceImpl implements SiteService {
     @Override
     @Transactional
     public List<Site> getSitesByUser(User user) {
-        UserEntity userEntity = this.userRepository.findByEmail(user.getEmail());
+        Iterable<SiteEntity> siteEntities;
+        if(user.getSuperAdmin()) {
+            siteEntities = this.siteRepository.list();
+        }
+        else {
+            UserEntity userEntity = this.userRepository.findByEmail(user.getEmail());
+            siteEntities = userEntity.getSites();
+        }
 
         List<Site> sites = Lists.newArrayList();
-        for(SiteEntity siteEntity : userEntity.getSites()) {
+        for(SiteEntity siteEntity : siteEntities) {
             sites.add(this.mapper.map(siteEntity, Site.class));
         }
         return sites;
-
         /*
             Lol, times like this do make me miss Groovy. Bring on JDK8 tho! Gimme them lambda's baby!
         return Lists.newArrayList(Collections2.transform(userEntity.getSites(), new Function<SiteEntity, Site>() {

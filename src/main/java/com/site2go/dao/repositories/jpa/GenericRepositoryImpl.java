@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 @Transactional(propagation = Propagation.MANDATORY, noRollbackFor = {EmptyResultDataAccessException.class})
 public abstract class GenericRepositoryImpl<T> implements GenericRepository<T> {
@@ -38,6 +39,11 @@ public abstract class GenericRepositoryImpl<T> implements GenericRepository<T> {
     @Override
     public void save(T entity) {
         this.entityManager.persist(entity);
+    }
+
+    @Override
+    public List<T> list() {
+        return this.entityManager.createQuery("select entity from " + this.clazz.getSimpleName() + " entity", this.clazz).getResultList();
     }
 
     protected TypedQuery<T> createNamedQuery(String name) {

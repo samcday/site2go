@@ -50,6 +50,7 @@ public class DevDataBootstrap {
     private void generateUsers() {
         UserEntity userEntity = this.superuser = new UserEntity();
         userEntity.setEmail("super@user.com");
+        userEntity.setSuperAdmin(true);
         userEntity.setPassword(BCrypt.hashpw("supa", BCrypt.gensalt()));
         this.userRepository.save(userEntity);
 
