@@ -21,7 +21,7 @@ public class SitesResource {
 
     @GET
     public List<Site> get(@Auth User user) {
-        return null;
+        return this.siteService.getSitesByUser(user);
     }
 
     @Autowired
