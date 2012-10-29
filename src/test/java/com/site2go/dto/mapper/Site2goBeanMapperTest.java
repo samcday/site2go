@@ -135,7 +135,7 @@ public class Site2goBeanMapperTest {
         User dest = this.beanMapper.map(src, User.class);
         assertNull(dest.getId());
         assertNull(dest.getEmail());
-        assertNull(dest.getSuperAdmin());
+        assertFalse(dest.getSuperAdmin());
         assertNull(dest.getCreatedDate());
         assertNull(dest.getModifiedDate());
     }
