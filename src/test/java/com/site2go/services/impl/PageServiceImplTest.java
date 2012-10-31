@@ -87,4 +87,9 @@ public class PageServiceImplTest {
         assertThat(pages, hasItem(pageWithSlug("pagetwo")));
     }
 
+    @Test
+    public void testGetPagesByNonexistentSite() {
+        List<Page> pages = this.pageServiceImpl.getPagesBySite(new Site() {{ this.setDomain("foo.com"); }});
+        assertThat(pages, is(nullValue()));
+    }
 }
