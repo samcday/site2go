@@ -326,6 +326,11 @@
                 <configuration>
                     <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
                     <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+                    <excludes>
+                        <exclude>com.site2go.util.DevDataBootstrap</exclude>
+                        <exclude>com.site2go.deployment.*</exclude>
+                        <exclude>com.site2go.constants.*</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
 
