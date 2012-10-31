@@ -36,17 +36,3 @@ public class MockBasicAuthProvider implements InjectableProvider<Auth, Type> {
         };
     }
 }
-
-
-
-    /*extends BasicAuthProvider<User> {
-    public MockBasicAuthProvider(final User user) {
-        super(new Authenticator<BasicCredentials, User>() {
-            @Override
-            public Optional<User> authenticate(BasicCredentials credentials) throws AuthenticationException {
-                return Optional.of(user);
-            }
-        }, "Mock Realm");
-    }
-}
-*/
