@@ -1,5 +1,6 @@
 package com.site2go.services.impl;
 
+import com.google.common.collect.Lists;
 import com.site2go.dao.entities.PageEntity;
 import com.site2go.dao.entities.SiteEntity;
 import com.site2go.dao.repositories.PageRepository;
@@ -11,6 +12,9 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -26,6 +30,20 @@ public class PageServiceImpl implements PageService {
         PageEntity pageEntity = this.pageRepository.findBySiteAndSlug(siteEntity.getId(), slug);
         if(pageEntity == null) return null;
         return this.beanMapper.map(pageEntity, Page.class);
+    }
+
+    @Override
+    public List<Page> getPagesBySite(Site site) {
+        SiteEntity siteEntity = this.siteRepository.findByDomain(site.getDomain());
+        if(siteEntity == null) return null;
+
+        Set<PageEntity> pageEntities = this.pageRepository.listBySite(siteEntity.getId());
+        List<Page> pages = Lists.newArrayList();
+        for(PageEntity pageEntity : pageEntities) {
+            pages.add(this.beanMapper.map(pageEntity, Page.class));
+        }
+
+        return pages;
     }
 
     @Autowired
