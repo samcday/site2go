@@ -1,5 +1,6 @@
 package com.site2go.services.impl;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.site2go.dao.entities.PageEntity;
 import com.site2go.dao.entities.SiteEntity;
@@ -71,9 +72,13 @@ public class PageServiceImplTest {
             this.setId(123);
         }});
 
-        when(this.mockPageRepository.listBySite(123)).thenReturn(Sets.<PageEntity>newHashSet(
-            new PageEntity() {{ this.setSlug("pageone"); }},
-            new PageEntity() {{ this.setSlug("pagetwo"); }}
+        when(this.mockPageRepository.listBySite(123)).thenReturn(Lists.<PageEntity>newArrayList(
+            new PageEntity() {{
+                this.setSlug("pageone");
+            }},
+            new PageEntity() {{
+                this.setSlug("pagetwo");
+            }}
         ));
 
         List<Page> pages = this.pageServiceImpl.getPagesBySite(new Site() {{ this.setDomain("test.com"); }});

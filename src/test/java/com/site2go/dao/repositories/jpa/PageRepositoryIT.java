@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.*;
@@ -40,7 +41,7 @@ public class PageRepositoryIT extends RepositoryITBase {
 
     @Test
     public void testListBySite() {
-        Set<PageEntity> pageEntities = this.pageRepository.listBySite(1);
+        List<PageEntity> pageEntities = this.pageRepository.listBySite(1);
         assertThat(pageEntities, is(notNullValue()));
         assertThat(pageEntities.size(), is(1));
         assertThat(pageEntities.iterator().next(), is(equalTo(this.devDataBootstrap.site1_page1)));
@@ -48,7 +49,7 @@ public class PageRepositoryIT extends RepositoryITBase {
 
     @Test
     public void testListByNonexistentSite() {
-        Set<PageEntity> pageEntities = this.pageRepository.listBySite(666);
+        List<PageEntity> pageEntities = this.pageRepository.listBySite(666);
         assertThat(pageEntities, is(notNullValue()));
         assertThat(pageEntities.size(), is(0));
     }

@@ -37,7 +37,7 @@ public class PageServiceImpl implements PageService {
         SiteEntity siteEntity = this.siteRepository.findByDomain(site.getDomain());
         if(siteEntity == null) return null;
 
-        Set<PageEntity> pageEntities = this.pageRepository.listBySite(siteEntity.getId());
+        List<PageEntity> pageEntities = this.pageRepository.listBySite(siteEntity.getId());
         List<Page> pages = Lists.newArrayList();
         for(PageEntity pageEntity : pageEntities) {
             pages.add(this.beanMapper.map(pageEntity, Page.class));
