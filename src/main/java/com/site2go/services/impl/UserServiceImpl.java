@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
     private Mapper beanMapper;
     private UserRepository userRepository;
 
     @Override
-    @Transactional
     public User login(String email, String password) {
         UserEntity userEntity;
         try {

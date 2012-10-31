@@ -10,8 +10,10 @@ import com.site2go.services.PageService;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class PageServiceImpl implements PageService {
     private PageRepository pageRepository;
     private SiteRepository siteRepository;
@@ -20,6 +22,7 @@ public class PageServiceImpl implements PageService {
     @Override
     public Page getPageBySlug(Site site, String slug) {
         SiteEntity siteEntity = this.siteRepository.findByDomain(site.getDomain());
+        if(siteEntity == null) return null;
         PageEntity pageEntity = this.pageRepository.findBySiteAndSlug(siteEntity.getId(), slug);
         if(pageEntity == null) return null;
         return this.beanMapper.map(pageEntity, Page.class);

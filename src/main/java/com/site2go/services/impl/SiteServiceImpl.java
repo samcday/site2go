@@ -20,6 +20,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 @Service
+@Transactional
 public class SiteServiceImpl implements SiteService {
     private SiteRepository siteRepository;
     private UserRepository userRepository;
@@ -39,7 +40,6 @@ public class SiteServiceImpl implements SiteService {
     }
 
     @Override
-    @Transactional
     public List<Site> getSitesByUser(User user) {
         Iterable<SiteEntity> siteEntities;
         if(user.getSuperAdmin()) {
