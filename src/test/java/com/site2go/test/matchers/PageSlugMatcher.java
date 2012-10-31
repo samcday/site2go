@@ -14,7 +14,6 @@ public class PageSlugMatcher extends TypeSafeMatcher<Page> {
 
     @Override
     public boolean matchesSafely(Page page) {
-        if(page == null) return false;
         return page.getSlug().equals(this.expectedSlug);
     }
 
