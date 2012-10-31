@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 @Component
 public class SiteResource {
     private PageResource pageResource;
+    private PagesResource pagesResource;
 
     @GET
     @Timed
@@ -29,8 +30,18 @@ public class SiteResource {
         return this.pageResource;
     }
 
+    @Path("/pages")
+    public PagesResource pagesResource() {
+        return this.pagesResource;
+    }
+
     @Autowired
     public void setPageResource(PageResource pageResource) {
         this.pageResource = pageResource;
+    }
+
+    @Autowired
+    public void setPagesResource(PagesResource pagesResource) {
+        this.pagesResource = pagesResource;
     }
 }

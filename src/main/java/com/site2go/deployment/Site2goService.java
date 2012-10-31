@@ -10,11 +10,8 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.util.Arrays;
-
 public class Site2goService extends SpringService<Site2goConfiguration> {
     public static void main(String args[]) throws Exception {
-        System.out.println(Arrays.toString(args));
         new Site2goService().run(args);
     }
 
