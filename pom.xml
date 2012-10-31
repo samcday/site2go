@@ -328,6 +328,7 @@
                         <exclude>com/site2go/constants/*</exclude>
                         <exclude>com/site2go/util/DevDataBootstrap.java</exclude>
                         <exclude>com/site2go/deployment/*</exclude>
+                        <exclude>com/site2go/spring/*</exclude>
                     </excludes>
                 </configuration>
             </plugin>
