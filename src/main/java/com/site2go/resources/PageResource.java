@@ -3,6 +3,7 @@ package com.site2go.resources;
 import com.site2go.dto.Page;
 import com.site2go.dto.Site;
 import com.site2go.services.PageService;
+import com.sun.jersey.api.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,9 @@ public class PageResource {
     @GET
     public Page get(@Context Site site, @PathParam("slug") String slug) {
         Page page = this.pageService.getPageBySlug(site, slug);
+        if(page == null) {
+            throw new NotFoundException();
+        }
         return page;
     }
 
