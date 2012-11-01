@@ -5,11 +5,8 @@ import com.site2go.dto.Site;
 import com.site2go.dto.User;
 import com.site2go.resources.fixtures.MockBasicAuthProvider;
 import com.site2go.services.SiteService;
-import com.sun.jersey.api.client.GenericType;
 import org.junit.Test;
 
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;

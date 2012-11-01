@@ -1,7 +1,5 @@
 package com.site2go.services.impl;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.site2go.dao.entities.SiteEntity;
 import com.site2go.dao.entities.UserEntity;
@@ -16,7 +14,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 @Service

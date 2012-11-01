@@ -1,7 +1,6 @@
 package com.site2go.test.matchers;
 
 import com.site2go.dto.Page;
-import com.site2go.services.impl.PageServiceImplTest;
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 
