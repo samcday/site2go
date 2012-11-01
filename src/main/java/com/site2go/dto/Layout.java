@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 public class Layout {
     private Integer id;
     private String name;
+    private String slug;
     private String site;
     private DateTime modifiedDate;
     private DateTime createdDate;
@@ -25,6 +26,14 @@ public class Layout {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
     public String getSite() {
