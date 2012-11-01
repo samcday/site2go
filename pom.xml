@@ -21,6 +21,15 @@
         <spring.version>3.1.2.RELEASE</spring.version>
         <groovy.version>1.8.8</groovy.version>
         <jbcrypt.version>0.3m</jbcrypt.version>
+        <jackson.version>1.9.10</jackson.version>
+        <junit.version>4.10</junit.version>
+        <logback.version>1.0.6</logback.version>
+        <slf4j.version>1.6.6</slf4j.version>
+        <guava.version>13.0</guava.version>
+        <jetty.version>8.1.5.v20120716</jetty.version>
+        <jersey.version>1.13</jersey.version>
+        <jboss-logging.version>3.1.0.GA</jboss-logging.version>
+        <asm.version>3.3.1</asm.version>
 
         <!-- Build plugin versions -->
         <build.plugin.shade.version>2.0</build.plugin.shade.version>
@@ -127,6 +136,72 @@
                 <groupId>org.mindrot</groupId>
                 <artifactId>jbcrypt</artifactId>
                 <version>${jbcrypt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-core-asl</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-server</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.logging</groupId>
+                <artifactId>jboss-logging</artifactId>
+                <version>${jboss-logging.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>asm</groupId>
+                <artifactId>asm</artifactId>
+                <version>${asm.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -329,6 +404,7 @@
                         <exclude>com/site2go/util/DevDataBootstrap.java</exclude>
                         <exclude>com/site2go/deployment/*</exclude>
                         <exclude>com/site2go/spring/*</exclude>
+                        <exclude>com/site2go/dao/util/hibernate/Site2goNamingStrategy.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>
@@ -336,7 +412,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.1</version>
+                <version>1.0.1</version>
                 <executions>
                     <execution>
                         <id>enforce-versions</id>
@@ -353,6 +429,7 @@
                                         <exclude>org.slf4j:slf4j-log4j*</exclude>
                                     </excludes>
                                 </bannedDependencies>
+                                <DependencyConvergence/>
                             </rules>
                         </configuration>
                     </execution>
