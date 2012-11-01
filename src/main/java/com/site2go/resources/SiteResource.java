@@ -18,6 +18,7 @@ import javax.ws.rs.core.Response;
 public class SiteResource {
     private PageResource pageResource;
     private PagesResource pagesResource;
+    private LayoutResource layoutResource;
 
     @GET
     @Timed
@@ -35,6 +36,11 @@ public class SiteResource {
         return this.pagesResource;
     }
 
+    @Path("/layout/{slug}")
+    public LayoutResource layoutResource() {
+        return this.layoutResource;
+    }
+
     @Autowired
     public void setPageResource(PageResource pageResource) {
         this.pageResource = pageResource;
@@ -43,5 +49,10 @@ public class SiteResource {
     @Autowired
     public void setPagesResource(PagesResource pagesResource) {
         this.pagesResource = pagesResource;
+    }
+
+    @Autowired
+    public void setLayoutResource(LayoutResource layoutResource) {
+        this.layoutResource = layoutResource;
     }
 }
