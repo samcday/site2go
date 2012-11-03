@@ -1,6 +1,8 @@
 package com.site2go.resources;
 
 import com.site2go.dto.Site;
+import com.site2go.dto.User;
+import com.yammer.dropwizard.auth.Auth;
 import com.yammer.metrics.annotation.Timed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +24,7 @@ public class SiteResource {
 
     @GET
     @Timed
-    public Response get(@Context Site site) {
+    public Response ge(@Auth User user, @Context Site site) {
         return Response.ok(site).build();
     }
 
