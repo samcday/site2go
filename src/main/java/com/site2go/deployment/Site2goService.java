@@ -2,6 +2,9 @@ package com.site2go.deployment;
 
 import com.github.nhuray.dropwizard.spring.SpringService;
 import com.github.nhuray.dropwizard.spring.config.ConfigurationPlaceholderConfigurer;
+import com.google.common.collect.Lists;
+import com.sun.jersey.api.core.ResourceConfig;
+import com.sun.jersey.spi.container.ContainerResponseFilter;
 import com.yammer.dropwizard.config.Environment;
 import com.yammer.dropwizard.json.Json;
 import org.codehaus.jackson.map.SerializationConfig;
@@ -9,6 +12,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.util.List;
 
 public class Site2goService extends SpringService<Site2goConfiguration> {
     public static void main(String args[]) throws Exception {
@@ -46,6 +51,9 @@ public class Site2goService extends SpringService<Site2goConfiguration> {
         beanFactory.registerSingleton("dw", config);
 
         ctx.refresh();
+
+        List<ContainerResponseFilter> filters = Lists.newArrayList(ctx.getBeansOfType(ContainerResponseFilter.class).values());
+        environment.setJerseyProperty(ResourceConfig.PROPERTY_CONTAINER_RESPONSE_FILTERS, filters);
 
         return ctx;
     }
