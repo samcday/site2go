@@ -83,6 +83,8 @@ public class DevDataBootstrap {
         layoutEntity.setName("Test Layout");
         layoutEntity.setTemplate("test template");
         this.layoutRepository.save(layoutEntity);
+        siteEntity.setDefaultLayout(layoutEntity);
+        this.siteRepository.save(siteEntity);
     }
 
     private void generateTestSite2() {
