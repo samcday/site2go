@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.*;
 
 public class Site2goBeanMapperTest {
@@ -169,5 +170,24 @@ public class Site2goBeanMapperTest {
         User destUser = this.beanMapper.map(srcUser, User.class);
         assertSame(srcUser.getModifiedDate(), destUser.getModifiedDate());
         assertSame(srcUser.getCreatedDate(), destUser.getCreatedDate());
+    }
+
+    @Test
+    public void testSiteMapping() {
+        Site site = new Site();
+        site.setDomain("test.com");
+        site.setName("Test Site");
+        site.setCreatedDate(new DateTime("2012-01-01"));
+        site.setModifiedDate(new DateTime("2012-02-01"));
+
+        SiteEntity siteEntity = this.beanMapper.map(site, SiteEntity.class);
+
+        assertThat(siteEntity.getDomain(), is("test.com"));
+        assertThat(siteEntity.getName(), is("Test Site"));
+        assertThat(siteEntity.getId(), is(nullValue()));
+
+        // Timestamps shouldn't come over from DTO's, that's a DAL concern.
+        assertThat(siteEntity.getCreatedDate(), is(nullValue()));
+        assertThat(siteEntity.getModifiedDate(), is(nullValue()));
     }
 }
