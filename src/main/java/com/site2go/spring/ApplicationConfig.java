@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.validation.Validation;
+import javax.validation.Validator;
+
 @Configuration
 public class ApplicationConfig {
     @Autowired private UserService userService;
@@ -22,5 +25,10 @@ public class ApplicationConfig {
     @Bean
     public BasicAuthProvider<User> basicAuthProvider() {
         return new BasicAuthProvider(this.userAuthenticator(), "Site2go");
+    }
+
+    @Bean
+    public Validator validator() {
+        return Validation.buildDefaultValidatorFactory().getValidator();
     }
 }

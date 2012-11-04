@@ -30,6 +30,7 @@
         <jersey.version>1.13</jersey.version>
         <jboss-logging.version>3.1.0.GA</jboss-logging.version>
         <asm.version>3.3.1</asm.version>
+        <hibernate-validator.version>4.3.0.Final</hibernate-validator.version>
 
         <!-- Build plugin versions -->
         <build.plugin.shade.version>2.0</build.plugin.shade.version>
@@ -203,6 +204,12 @@
                 <artifactId>asm</artifactId>
                 <version>${asm.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -275,6 +282,11 @@
         <dependency>
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
         </dependency>
 
         <!-- TEST dependencies -->

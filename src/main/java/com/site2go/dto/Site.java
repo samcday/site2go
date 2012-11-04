@@ -3,9 +3,13 @@ package com.site2go.dto;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.joda.time.DateTime;
 
+import javax.validation.constraints.NotNull;
+
 public class Site {
     private Integer id;
+    @NotNull
     private String name;
+    @NotNull
     private String domain;
     private DateTime modifiedDate;
     private DateTime createdDate;
