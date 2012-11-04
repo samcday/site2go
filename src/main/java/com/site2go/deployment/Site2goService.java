@@ -3,6 +3,7 @@ package com.site2go.deployment;
 import com.github.nhuray.dropwizard.spring.SpringService;
 import com.github.nhuray.dropwizard.spring.config.ConfigurationPlaceholderConfigurer;
 import com.google.common.collect.Lists;
+import com.site2go.servlet.filters.CORSFilter;
 import com.sun.jersey.api.core.ResourceConfig;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
 import com.yammer.dropwizard.config.Environment;
@@ -54,6 +55,8 @@ public class Site2goService extends SpringService<Site2goConfiguration> {
 
         List<ContainerResponseFilter> filters = Lists.newArrayList(ctx.getBeansOfType(ContainerResponseFilter.class).values());
         environment.setJerseyProperty(ResourceConfig.PROPERTY_CONTAINER_RESPONSE_FILTERS, filters);
+
+        environment.addFilter(new CORSFilter(), "/*");
 
         return ctx;
     }
